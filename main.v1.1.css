@@ -54,7 +54,7 @@
 /* Các font-face khác giữ nguyên với font-display: swap */
 
 .main-wrapper {
-    background-image: url(assets/bg.png);
+    background-image: url(assets/bg1.png);
     position: relative;
     z-index: 1;
     min-height: 100vh;
@@ -177,7 +177,7 @@ label span:before {
     width: 23%;
     height: 30.5%;
     position: absolute;
-    left: 429px;
+    left: 53.6%;
     top: 25.5%;
     rotate: -8.5deg;
     z-index: -1;
@@ -189,7 +189,7 @@ label span:before {
     width: 24.5%;
     height: 35%;
     position: absolute;
-    left: 560px;
+    left: 70%;
     top: 52.5%;
     rotate: 7deg;
     z-index: -1;
@@ -202,8 +202,8 @@ label span:before {
 
 .name {
     position: absolute;
-    left: 170px;
-    top: 250px;
+    left: 21.25%;
+    top: 55.55%;
     width: 250px;
     height: 37px;
     display: flex;
@@ -223,8 +223,8 @@ label span:before {
 .title {
     position: absolute;
     text-align: center;
-    left: 140px;
-    top: 270px;
+    left: 17.5%;
+    top: 60%;
     width: 250px;
     height: 46px;
     color: rgb(0, 0, 0);
@@ -241,8 +241,8 @@ label span:before {
 
 .message {
     position: absolute;
-    left: 70px;
-    top: 130px;
+    left: 8.75%;
+    top: 28.8%;
     width: 300px;
     height: 172px;
     font-family: "Arial";
@@ -328,31 +328,32 @@ label span:before {
 
 @media only screen and (max-width: 600px) {
     .main-wrapper {
-        background: linear-gradient(60deg, #2b3990 0%, #3f5ba5 25%, #5792c6 50%, #00aeef 100%);
+        /* background: linear-gradient(60deg, #2b3990 0%, #3f5ba5 25%, #5792c6 50%, #00aeef 100%); */
+        background-image: url(assets/bg2.png);
         min-height: auto;
         background-size: contain;
         background-position: top -10px left 0;
         background-repeat: repeat-y;
     }
     .name {
-        left: 11px;
-        top: 133px;
+        left: 20%;
+        top: 55.8%;
         width: 110px;
         height: 13px;
         font-size: 8px;
     }
     .title {
         font-size: 6px;
-        top: 144px;
-        left: 11px;
+        top: 60.9%;
+        left: 17.1%;
         width: 110px;
         height: 20px;
     }
     .message {
         font-size: 7px;
-        left: 136px;
-        top: 72px;
-        width: 174px;
+        left: 8.5%;
+        top: 27.9%;
+        width: 140px;
         height: 75px;
     }
     /* Thêm tối ưu cho mobile */
