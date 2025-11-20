@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chào mừng kỷ niệm ngày nhà giáo Việt Nam 20-11</title>
+    <meta
+      property="og:title"
+      content="Chào mừng kỷ niệm ngày nhà giáo Việt Nam 20-11"
+    />
+    <meta
+      property="og:description"
+      content="Chào mừng kỷ niệm ngày nhà giáo Việt Nam 20-11"
+    />
+    <meta property="og:type" content="website" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.png" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css"
+      integrity="sha512-UtLOu9C7NuThQhuXXrGwx9Jb/z9zPQJctuAgNUBK3Z6kkSYT9wJ+2+dh6klS+TDBCV9kNPBbAxbVD+vCcfGPaA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"
+      integrity="sha512-wUa0ktp10dgVVhWdRVfcUO4vHS0ryT42WOEcXjVVF2+2rcYBKTY7Yx7JCEzjWgPV+rj2EDUr8TwsoWF6IoIOPg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="main.v1.1.css" />
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div
+        class="flex max-w-[1200px] mx-auto items-center justify-center pt-[30px] sm:py-[20px] gap-[16px] sm:gap-[32px] px-[16px]"
+      >
+        <img src="assets/huyhieudoan.png" class="sm:w-[90px] w-[32px] hidden" />
+        <div class="flex1">
+          <img src="assets/chudaihoi.png" class="w-full" />
+        </div>
+      </div>
+      <div class="sm:pt-[30px] pt-[20px] mx-auto flex justify-center">
+        <div
+          class="flex sm:gap-[50px] gap-[20px] max-w-[1200px] flex-col sm:flex-row"
+        >
+          <div class="input-place flex flex-col gap-[10px] sm:w-[350px] w-full">
+            <div class="input-group mb-[10px]">
+              <label for="image-choose" class="text-white cursor-pointer">
+                <span class="cursor-pointer">
+                  Chọn ảnh về thầy cô, mái trường (tối đa 2 ảnh)
+                </span>
+              </label>
+              <input
+                type="file"
+                id="image-choose"
+                name="avatar"
+                accept="image/*"
+                class="hidden"
+                multiple
+              />
+            </div>
+            <div class="input-group flex flex-col gap-[10px]">
+              <label for="name" class="text-white">
+                <span>Họ và tên</span>
+              </label>
+              <div class="gradient-border-wrapper">
+                <input
+                  type="text"
+                  id="name"
+                  class="gradient-border h-[40px]"
+                  placeholder="Họ và tên..."
+                />
+              </div>
+            </div>
+            <div class="input-group flex flex-col gap-[10px]">
+              <label for="title" class="text-white">
+                <span>Trường - Lớp</span>
+              </label>
+              <div class="gradient-border-wrapper">
+                <textarea
+                  type="text"
+                  id="title"
+                  class="gradient-border"
+                  placeholder="Nơi học tập..."
+                  rows="2"
+                ></textarea>
+              </div>
+            </div>
+            <div class="input-group flex flex-col gap-[10px]">
+              <label for="message" class="text-white">
+                <span>Ghi lại cảm, lời chúc đến thầy cô</span>
+              </label>
+              <div class="gradient-border-wrapper">
+                <textarea
+                  id="message"
+                  rows="5"
+                  class="gradient-border"
+                  placeholder="Lời nhắn..."
+                ></textarea>
+              </div>
+            </div>
+            <div class="input-group flex flex-col gap-[10px]">
+              <div class="gradient-border-wrapper cursor-pointer">
+                <button
+                  id="submit"
+                  rows="5"
+                  class="gradient-border text-white font-bold"
+                >
+                  Tạo lời nhắn
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="frame-wrapper sm:max-w-[800px] sm:w-[800px] max-w-[350px] w-[350px]"
+            id="frame-wrapper"
+          >
+            <img src="assets/daihoitncs.png" alt="" class="w-full" />
+            <div class="name">
+              <span class="name-content"></span>
+            </div>
+            <div class="title">
+              <span class="title-content"></span>
+            </div>
+            <div class="image-choosen">
+              <img
+                id="img-choosen"
+                src="assets/placeholder.jpg"
+                alt=""
+                class="w-full h-full"
+              />
+            </div>
+            <div class="image-choosen-1">
+              <img
+                id="img-choosen-1"
+                src="assets/placeholder.jpg"
+                alt=""
+                class="w-full h-full"
+              />
+            </div>
+            <div class="message">
+              <p class="message-content"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="cropperModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="text-2xl mb-4">Cắt ảnh</h2>
+        <div class="relative w-full h-96">
+          <img
+            id="cropperImage"
+            src=""
+            alt="Cropper Image"
+            class="absolute top-0 left-0 w-full h-full"
+          />
+        </div>
+        <button
+          id="saveCroppedImage"
+          class="mt-5 bg-blue-500 text-white py-2 px-4 rounded"
+        >
+          Lưu
+        </button>
+      </div>
+    </div>
+    <div class="loader-wrapper" style="display: none">
+      <div id="loader" class="loader"></div>
+    </div>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"version":"2024.11.0","token":"648b51afdd7a4a2496682b8b773868e5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"
+    integrity="sha512-JyCZjCOZoyeQZSd5+YEAcFgz2fowJ1F1hyJOXgtKu4llIa0KneLcidn5bwfutiehUTiOuK87A986BZJMko0eWQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <script type="module">
+    let cropper;
+    const imageChoose = document.getElementById("image-choose");
+    const imgChoosen = document.getElementById("img-choosen");
+    const imgChoosen_1 = document.getElementById("img-choosen-1");
+    const cropperImage = document.getElementById("cropperImage");
+    const cropperModal = document.getElementById("cropperModal");
+    const saveCroppedImage = document.getElementById("saveCroppedImage");
+    const closeModal = document.querySelector(".close");
+    const nameInput = document.getElementById("name");
+    const titleInput = document.getElementById("title");
+    const messageInput = document.getElementById("message");
+    const submitBtn = document.getElementById("submit");
+    const loaderWrapper = document.querySelector(".loader-wrapper");
+
+    // xử lý chọn tối đa 2 ảnh, crop tuần tự
+    let selectedFiles = [];
+    let currentCropIndex = 0;
+
+    function resetAll() {
+      imageChoose.value = "";
+      selectedFiles = [];
+      currentCropIndex = 0;
+      if (cropper) {
+        cropper.destroy();
+        cropper = null;
+      }
+    }
+
+    imageChoose.addEventListener("change", function () {
+      selectedFiles = Array.from(this.files).slice(0, 2); // chỉ lấy tối đa 2
+      if (selectedFiles.length > 0) {
+        currentCropIndex = 0;
+        openCropperForIndex(currentCropIndex);
+      }
+    });
+
+    function openCropperForIndex(i) {
+      const file = selectedFiles[i];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        cropperImage.src = e.target.result;
+        cropperModal.style.display = "block";
+        if (cropper) cropper.destroy();
+        cropper = new Cropper(cropperImage, { aspectRatio: 1, viewMode: 1 });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    saveCroppedImage.addEventListener("click", function () {
+      if (!cropper) return;
+      const canvas = cropper.getCroppedCanvas();
+      const base64encodedImage = canvas.toDataURL("image/jpeg");
+      if (currentCropIndex === 0) imgChoosen.src = base64encodedImage;
+      else imgChoosen_1.src = base64encodedImage;
+
+      cropperModal.style.display = "none";
+      currentCropIndex++;
+      if (currentCropIndex < selectedFiles.length) {
+        // tiếp tục crop file tiếp theo
+        openCropperForIndex(currentCropIndex);
+      } else {
+        resetAll();
+      }
+    });
+
+    closeModal.addEventListener("click", function () {
+      cropperModal.style.display = "none";
+      resetAll();
+    });
+
+    window.addEventListener("click", function (event) {
+      if (event.target === cropperModal) {
+        cropperModal.style.display = "none";
+        resetAll();
+      }
+    });
+
+    nameInput.addEventListener("input", function () {
+      const nameContent = document.querySelector(".name-content");
+      if (nameContent) {
+        nameContent.textContent = this.value;
+      }
+    });
+
+    titleInput.addEventListener("input", function () {
+      const titleContent = document.querySelector(".title-content");
+      if (titleContent) {
+        titleContent.innerHTML = this.value.replace(/\n/g, "<br>");
+      }
+    });
+
+    messageInput.addEventListener("input", function () {
+      const messageContent = document.querySelector(".message-content");
+      if (messageContent) {
+        messageContent.textContent = this.value;
+      }
+    });
+
+    // Helper: chuyển dataURL -> Blob
+    async function dataURLToBlob(dataURL) {
+      const res = await fetch(dataURL);
+      return await res.blob();
+    }
+
+    // Helper: tạo và click download anchor
+    function triggerDownload(url, filename) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename || "image.png";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    submitBtn.addEventListener("click", async () => {
+      loaderWrapper.style.display = "flex";
+      const node = document.getElementById("frame-wrapper");
+      const scaleObject = window.innerWidth < 768 ? 3 : 2;
+      const options = {
+        width: node.offsetWidth * scaleObject,
+        height: node.offsetHeight * scaleObject,
+        style: {
+          transform: "scale(" + scaleObject + ")",
+          transformOrigin: "top left",
+        },
+        quality: 1,
+      };
+
+      try {
+        // Tạo dataURL 1 lần
+        const dataUrl = await domtoimage.toPng(node, options);
+        const blob = await dataURLToBlob(dataUrl);
+
+        if (blob.size > 10 * 1024 * 1024) {
+          alert("Ảnh quá lớn (trên 10MB)!");
+          loaderWrapper.style.display = "none";
+          return;
+        }
+
+        const objectUrl = URL.createObjectURL(blob);
+
+        // Hiển thị ảnh result
+        loaderWrapper.style.display = "none";
+        const img = new Image();
+        img.src = objectUrl;
+        img.alt = "Lời yêu thương";
+        img.style.maxWidth = "100%";
+        img.style.borderRadius = "12px";
+        img.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
+        img.style.marginTop = "10px";
+
+        node.innerHTML = "";
+        node.appendChild(img);
+
+        // Nút hành động
+        const btnWrapper = document.createElement("div");
+        btnWrapper.style.display = "flex";
+        btnWrapper.style.justifyContent = "center";
+        btnWrapper.style.flexWrap = "wrap";
+        btnWrapper.style.gap = "10px";
+        btnWrapper.style.marginTop = "10px";
+        node.appendChild(btnWrapper);
+
+        const downloadBtn = document.createElement("button");
+        downloadBtn.textContent = "⬇️ Tải ảnh";
+        Object.assign(downloadBtn.style, {
+          background: "#9C27B0",
+          color: "white",
+          padding: "10px 14px",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          fontFamily: "system-ui, sans-serif",
+        });
+        btnWrapper.appendChild(downloadBtn);
+
+        const openBtn = document.createElement("button");
+        openBtn.textContent = "🔗 Mở ảnh (tab mới)";
+        Object.assign(openBtn.style, {
+          background: "rgb(243,132,33)",
+          color: "white",
+          padding: "10px 14px",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          fontFamily: "system-ui, sans-serif",
+        });
+        btnWrapper.appendChild(openBtn);
+
+        const copyBtn = document.createElement("button");
+        copyBtn.textContent = "📋 Sao chép đường dẫn tạm";
+        Object.assign(copyBtn.style, {
+          background: "#1976D2",
+          color: "white",
+          padding: "10px 14px",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          fontFamily: "system-ui, sans-serif",
+        });
+        btnWrapper.appendChild(copyBtn);
+
+        downloadBtn.addEventListener("click", () => {
+          // Tải về trực tiếp từ object URL
+          triggerDownload(objectUrl, `loi-nhan_${Date.now()}.png`);
+        });
+
+        openBtn.addEventListener("click", () => {
+          window.open(objectUrl, "_blank");
+        });
+
+        copyBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(objectUrl);
+            copyBtn.textContent = "✅ Đã sao chép!";
+            setTimeout(
+              () => (copyBtn.textContent = "📋 Sao chép đường dẫn tạm"),
+              2000,
+            );
+          } catch (err) {
+            console.log(err);
+            alert("Không thể sao chép. Vui lòng sao chép thủ công đường dẫn.");
+          }
+        });
+
+        // Popup hướng dẫn (giữ logic cũ, sửa không liên quan Firebase)
+        const popup = document.createElement("div");
+        popup.innerHTML = `
+          <div style="
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999;">
+            <div style="
+              background: white; padding: 20px; border-radius: 12px; text-align: center;
+              max-width: 340px; font-family: system-ui, sans-serif;">
+              <p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">✅ Lời nhắn của bạn đã sẵn sàng!</p>
+              <p style="font-size: 14px; color: #444; margin-bottom: 10px; line-height: 1.5;">Vui lòng chờ ảnh hiển thị hoàn tất, sau đó:</p>
+              <ul style="text-align: left; color: #555; font-size: 13px; line-height: 1.5; margin: 0 0 12px 20px; padding: 0;">
+                <li>📷 Nhấn <b>Tải ảnh</b> để lưu về máy.</li>
+                <li>🔗 Hoặc mở ảnh trong tab mới, hoặc sao chép đường dẫn tạm để dùng.</li>
+              </ul>
+              <p style="font-size: 12px; color: #777; margin-bottom: 14px;">⚠️ Đường dẫn tạm chỉ hợp lệ trong phiên trình duyệt hiện tại.</p>
+              <div style="display: flex; justify-content: center; gap: 10px;">
+                <button id="closePopup" style="background: #4CAF50; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer;">Đã hiểu</button>
+                <button id="reloadPage" style="background: #2196F3; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer;">🔄 Tạo mới</button>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(popup);
+        document.getElementById("closePopup").onclick = () =>
+          document.body.removeChild(popup);
+        document.getElementById("reloadPage").onclick = () => location.reload();
+      } catch (err) {
+        console.error("❌ Lỗi tạo ảnh:", err);
+        loaderWrapper.style.display = "none";
+        alert("Không thể tạo ảnh, vui lòng thử lại!");
+      }
+    });
+  </script>
+</html>
