@@ -316,7 +316,8 @@
     submitBtn.addEventListener("click", async () => {
       loaderWrapper.style.display = "flex";
       const node = document.getElementById("frame-wrapper");
-      const scaleObject = window.innerWidth < 768 ? 3 : 2;
+      // Use smaller scale on mobile to avoid extremely large images
+      const scaleObject = window.innerWidth < 768 ? 2 : 2;
       const options = {
         width: node.offsetWidth * scaleObject,
         height: node.offsetHeight * scaleObject,
